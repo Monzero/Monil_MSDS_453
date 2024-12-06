@@ -22,7 +22,7 @@ def get_relevant_context(rewritten_input, vault_embeddings, vault_content, top_k
     if vault_embeddings.nelement() == 0:  # Check if the tensor has any elements
         return []
     # Encode the rewritten input
-    #input_embedding = ollama.embeddings(model='mxbai-embed-large', prompt=rewritten_input)["embedding"]
+
     input_embedding = ollama.embeddings(model='llama3', prompt=rewritten_input)["embedding"]
     # Compute cosine similarity between the input and vault embeddings
     cos_scores = torch.cosine_similarity(torch.tensor(input_embedding).unsqueeze(0), vault_embeddings)
